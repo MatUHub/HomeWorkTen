@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HomeWorkTen</string>
+    <string name="add">Добавить</string>
+    <string name="clear_all">Очистить весь список</string>
+    <string name="delete">Удалить</string>
+    <string name="update">Редактировать</string>
+</resources>
