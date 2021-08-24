@@ -3,6 +3,7 @@ package com.example.homeworkten;
 import android.content.res.Resources;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CardSourceImpl implements com.example.homeworkten.CardSource {
@@ -52,7 +53,7 @@ public class CardSourceImpl implements com.example.homeworkten.CardSource {
         String[] description = resources.getStringArray(R.array.item_description);
 
         for (int i = 0; i < note.length; i++) {
-            dataSource.add(new com.example.homeworkten.CardData(note[i], description[i]));
+            dataSource.add(new com.example.homeworkten.CardData(note[i], description[i], Calendar.getInstance().getTime()));
         }
         return this;
     }

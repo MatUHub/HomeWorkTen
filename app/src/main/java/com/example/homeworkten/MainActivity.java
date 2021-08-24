@@ -10,14 +10,19 @@ public class MainActivity extends AppCompatActivity {
 
     private Navigation navigation;
 
+    public Publisher publisher = new Publisher();
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
-navigation = new Navigation(getSupportFragmentManager());
-        if(savedInstanceState == null){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, FragmentNote.newInstance()).commit();
+        navigation = new Navigation(getSupportFragmentManager());
+        if (savedInstanceState == null) {
             navigation.addFragment(com.example.homeworkten.FragmentNote.newInstance(), false);
         }
     }

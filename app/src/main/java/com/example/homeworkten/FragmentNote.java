@@ -1,5 +1,6 @@
 package com.example.homeworkten;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -23,6 +24,29 @@ public class FragmentNote extends Fragment {
     private AdapterNote adapterNote;
     private RecyclerView recyclerView;
 
+    private Navigation navigation;
+    private Publisher publisher;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        MainActivity activity = (MainActivity) context;
+        navigation = activity.getNavigation();
+        publisher = activity.getPublisher();
+    }
+
+    @Override
+    public void onDetach() {
+        navigation = null;
+        publisher = null;
+        super.onDetach();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        data = new CardSourceImpl(getResources()).init();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +56,7 @@ public class FragmentNote extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        data = new CardSourceImpl(getResources()).init();
+
         adapterNote = new AdapterNote(data, this);
         adapterNote.setOnMyOnClickListener(new MyOnClickListener() {
             @Override
@@ -53,8 +77,14 @@ public class FragmentNote extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                data.addCardData(new CardData("New Запись " + (data.size() + 1), "new Дело " + (data.size() + 1)));
-                adapterNote.notifyDataSetChanged();
+                navigation.addFragment(CardUpdateFragment.newInstance(), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateState(CardData cardData) {
+                        data.addCardData(cardData);
+                        adapterNote.notifyItemInserted(data.size() - 1);
+                    }
+                });
                 return true;
             case R.id.action_clear:
                 data.clearCardData();
@@ -75,8 +105,14 @@ public class FragmentNote extends Fragment {
         int position = adapterNote.getMenuContextOnClickPosition();
         switch (item.getItemId()) {
             case R.id.card_action_update:
-                data.getCardData(position).setNote("Обновлено " + (position + 1));
-                adapterNote.notifyItemChanged(position);
+                navigation.addFragment(CardUpdateFragment.newInstance(data.getCardData(position)), true);
+                publisher.subscribe(new Observer() {
+                    @Override
+                    public void updateState(CardData cardData) {
+                        data.updateCardData(position, cardData);
+                        adapterNote.notifyItemChanged(position);
+                    }
+                });
                 return true;
             case R.id.card_action_clear:
                 data.deleteCardData(position);
