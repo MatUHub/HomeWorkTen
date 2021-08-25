@@ -1,4 +1,6 @@
-package com.example.homeworkten;
+package com.example.homeworkten.observer;
+
+import com.example.homeworkten.model.CardData;
 
 import java.util.ArrayList;
 import java.util.List;

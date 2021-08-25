@@ -1,4 +1,4 @@
-package com.example.homeworkten;
+package com.example.homeworkten.view;
 
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -10,9 +10,13 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.homeworkten.R;
+import com.example.homeworkten.ripository.CardSource;
+import com.example.homeworkten.ripository.MyOnClickListener;
+
 public class AdapterNote extends RecyclerView.Adapter<AdapterNote.MyViewHolder> {
 
-    private com.example.homeworkten.CardSource dataSource;
+    private CardSource dataSource;
 
     private Fragment fragment;
 
@@ -22,18 +26,18 @@ public class AdapterNote extends RecyclerView.Adapter<AdapterNote.MyViewHolder> 
         return menuContextOnClickPosition;
     }
 
-    public AdapterNote(com.example.homeworkten.CardSource dataSource, Fragment fragment) {
+    public AdapterNote(CardSource dataSource, Fragment fragment) {
         this.dataSource = dataSource;
         this.fragment = fragment;
     }
 
-    private com.example.homeworkten.MyOnClickListener listener;
+    private MyOnClickListener listener;
 
-    public void setOnMyOnClickListener(com.example.homeworkten.MyOnClickListener listener) {
+    public void setOnMyOnClickListener(MyOnClickListener listener) {
         this.listener = listener;
     }
 
-    public void setData(com.example.homeworkten.CardSource dataSource) {
+    public void setData(CardSource dataSource) {
         this.dataSource = dataSource;
     }
 

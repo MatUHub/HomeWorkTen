@@ -1,4 +1,4 @@
-package com.example.homeworkten;
+package com.example.homeworkten.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 
+import com.example.homeworkten.model.CardData;
+import com.example.homeworkten.observer.Publisher;
+import com.example.homeworkten.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;

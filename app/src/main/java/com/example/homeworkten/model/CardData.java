@@ -1,4 +1,4 @@
-package com.example.homeworkten;
+package com.example.homeworkten.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

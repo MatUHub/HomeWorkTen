@@ -1,4 +1,4 @@
-package com.example.homeworkten;
+package com.example.homeworkten.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,14 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.homeworkten.model.CardData;
+import com.example.homeworkten.ripository.CardSource;
+import com.example.homeworkten.ripository.CardSourceImpl;
+import com.example.homeworkten.ripository.MyOnClickListener;
+import com.example.homeworkten.observer.Observer;
+import com.example.homeworkten.observer.Publisher;
+import com.example.homeworkten.R;
 
 public class FragmentNote extends Fragment {
     public static FragmentNote newInstance() {

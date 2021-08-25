@@ -1,9 +1,12 @@
-package com.example.homeworkten;
+package com.example.homeworkten.view;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.homeworkten.observer.Publisher;
+import com.example.homeworkten.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         navigation = new Navigation(getSupportFragmentManager());
         if (savedInstanceState == null) {
-            navigation.addFragment(com.example.homeworkten.FragmentNote.newInstance(), false);
+            navigation.addFragment(FragmentNote.newInstance(), false);
         }
     }
 

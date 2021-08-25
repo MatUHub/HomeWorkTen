@@ -1,8 +1,10 @@
-package com.example.homeworkten;
+package com.example.homeworkten.view;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.homeworkten.R;
 
 public class Navigation {
 
