@@ -10,7 +10,16 @@ public class CardData implements Parcelable {
     private String note;
     private String description;
 
+    private String id;
+
     private Date date;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 
     public Date getDate() {

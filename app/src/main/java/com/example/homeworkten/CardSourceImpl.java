@@ -12,6 +12,8 @@ public class CardSourceImpl implements com.example.homeworkten.CardSource {
 
     private Resources resources;
 
+
+
     @Override
     public int size() {
         return dataSource.size();
@@ -47,13 +49,18 @@ public class CardSourceImpl implements com.example.homeworkten.CardSource {
         this.resources = resources;
     }
 
-    public CardSourceImpl init() {
+    @Override
+    public CardSource init(CardSourceResponse cardSourceResponse) {
 
         String[] note = resources.getStringArray(R.array.item_notes);
         String[] description = resources.getStringArray(R.array.item_description);
 
         for (int i = 0; i < note.length; i++) {
             dataSource.add(new com.example.homeworkten.CardData(note[i], description[i], Calendar.getInstance().getTime()));
+        }
+
+        if(cardSourceResponse != null){
+            cardSourceResponse.initialized(this);
         }
         return this;
     }

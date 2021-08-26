@@ -42,11 +42,6 @@ public class FragmentNote extends Fragment {
         super.onDetach();
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        data = new CardSourceImpl(getResources()).init();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +52,7 @@ public class FragmentNote extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        adapterNote = new AdapterNote(data, this);
+        adapterNote = new AdapterNote(this);
         adapterNote.setOnMyOnClickListener(new MyOnClickListener() {
             @Override
             public void onMyClick(View view, int position) {
@@ -65,6 +60,20 @@ public class FragmentNote extends Fragment {
             }
         });
         recyclerView.setAdapter(adapterNote);
+       /* data = new CardSourceImpl(getResources()).init(new CardSourceResponse() {
+            @Override
+            public void initialized(CardSource cardSource) {
+                adapterNote.notifyDataSetChanged();
+            }
+        });*/
+        data = new CardsSourceFirebaseImpl().init(new CardSourceResponse() {
+            @Override
+            public void initialized(CardSource cardSource) {
+                adapterNote.notifyDataSetChanged();
+            }
+        });
+
+        adapterNote.setDataSource(data);
         return view;
     }
 

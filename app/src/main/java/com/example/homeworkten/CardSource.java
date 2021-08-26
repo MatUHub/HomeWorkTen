@@ -1,6 +1,7 @@
 package com.example.homeworkten;
 
 public interface CardSource {
+    CardSource init(CardSourceResponse cardSourceResponse);
     int size();
     com.example.homeworkten.CardData getCardData(int position);
 

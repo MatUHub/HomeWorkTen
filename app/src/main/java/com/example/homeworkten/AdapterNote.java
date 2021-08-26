@@ -12,6 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AdapterNote extends RecyclerView.Adapter<AdapterNote.MyViewHolder> {
 
+    public CardSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(CardSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
+    }
+
     private com.example.homeworkten.CardSource dataSource;
 
     private Fragment fragment;
@@ -22,8 +31,7 @@ public class AdapterNote extends RecyclerView.Adapter<AdapterNote.MyViewHolder> 
         return menuContextOnClickPosition;
     }
 
-    public AdapterNote(com.example.homeworkten.CardSource dataSource, Fragment fragment) {
-        this.dataSource = dataSource;
+    public AdapterNote( Fragment fragment) {
         this.fragment = fragment;
     }
 

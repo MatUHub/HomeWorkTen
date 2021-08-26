@@ -106,7 +106,14 @@ public class CardUpdateFragment extends Fragment {
         String note = this.note.getText().toString();
         String description = this.descripton.getText().toString();
         Date date = getDateFromDatePicker();
-        return new CardData(note, description, date);
+        if (cardData != null) {
+            cardData.setNote(note);
+            cardData.setDescription(description);
+            cardData.setDate(date);
+            return cardData;
+        } else {
+            return new CardData(note, description, date);
+        }
     }
 
     @Override
